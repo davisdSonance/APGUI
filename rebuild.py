@@ -51,7 +51,7 @@ class App(customtkinter.CTk):
         self.seriesChoice = ""
         self.sequence = ""
         self.sequenceTest = "Loudspeaker Production Test"
-        self.tests = ["Impedance","Phase","PhaseWrapDiff","RMS","THD"]
+        self.tests = ["Impedance","PhaseWrapDiff","RMS","THD"]
         self.ticks = [10,20,30,50,100,200,300,500,1000,2000,3000,5000,10000,20000]
         self.finalFilePath = ""
         self.images = []
@@ -60,7 +60,7 @@ class App(customtkinter.CTk):
         self.pX = 1
         self.pY = 1
         
-        self.models = ["SA","AT","BE","OW","CUBE","QX","QXC","SXC","FXA","ASX","OT","FX","AL","W","OMNI","EXTRA"]
+        self.models = ["SA","AT","BE","OW","CUBE","QX","QXC","SXC","FXA","ASX","OT","FX","AL","W","OMNI","EXTRA", "NONE"]
         self.modelSA = ["32-4", "32-70",  "42-4","42-70", "63-4","63-70"]
         self.modelAt = ["806", "808","812","816"]
         self.modelBE =["42","43", "52Q", "53Q","62Q","64Q","42-M","43-M","52Q-M","53Q-M","62Q-M","63Q-M","66Q-M","68Q-M","66QBE","68QBE","66QTI","68QTI"]
@@ -86,90 +86,87 @@ class App(customtkinter.CTk):
         self.check_var = customtkinter.StringVar(value="on")
 
         self.window48Button = customtkinter.CTkButton(master=self.app, text="Window Test 4 - 8", command=self.Window48Button,fg_color="blue")
-        self.window48Button.grid(row=0, column= 0, padx = 20, pady = 10)
+        self.window48Button.grid(row=1, column= 0, padx = 20, pady = 10)
 
         self.limit48Button = customtkinter.CTkButton(master=self.app, text= "Limits 4 - 8", command=self.limit48Button,fg_color="blue")
-        self.limit48Button.grid(row=1, column= 0, padx = 20, pady = 10)
+        self.limit48Button.grid(row=2, column= 0, padx = 20, pady = 10)
 
         self.customButton= customtkinter.CTkButton(master=self.app, text= "Custom", command=self.customButton,fg_color="blue")
-        self.customButton.grid(row=2, column= 0, padx = 20, pady = 10)
+        self.customButton.grid(row=3, column= 0, padx = 20, pady = 10)
 
         self.window70Button= customtkinter.CTkButton(master=self.app, text= "Windows Test 70V", command=self.Window70Button,fg_color="blue")
-        self.window70Button.grid(row=3, column= 0, padx = 20, pady = 10)
+        self.window70Button.grid(row=4, column= 0, padx = 20, pady = 10)
 
         self.limt70Button= customtkinter.CTkButton(master=self.app, text= "Limits 70V", command=self.limit70Button,fg_color="blue")
-        self.limt70Button.grid(row=4, column= 0, padx = 20, pady = 10)
+        self.limt70Button.grid(row=5, column= 0, padx = 20, pady = 10)
 
         self.button6= customtkinter.CTkButton(master=self.app, text= "Passed Test (Right Arrow)", command=self.passButton)
-        self.button6.grid(row=5, column= 4, padx = 20, pady = 10)
+        self.button6.grid(row=6, column=3, padx = 20, pady = 10)
 
         self.button7= customtkinter.CTkButton(master=self.app, text= "Failed Test (Left Arrow)", command=self.failButton)
-        self.button7.grid(row=5, column= 5, padx = 20, pady = 10)
+        self.button7.grid(row=6, column= 0, padx = 20, pady = 10)
 
         self.button8= customtkinter.CTkButton(master=self.app, text= "Start Software", command=self.openSoftware,width= 25, height= 25,fg_color="green",text_color="white")
-        self.button8.grid(row=6, column= 0, padx = 0, pady = 0)
+        self.button8.grid(row=0, column= 0, padx = 0, pady = 0)
 
         self.button9= customtkinter.CTkButton(master=self.app, text= "Submit (Enter)", command=self.testSubmitButton,width= 100, height= 50,fg_color="green")
-        self.button9.grid(row=6, column= 6, padx = 20, pady = 10)
+        self.button9.grid(row=7, column= 5, padx = 20, pady = 10)
 
         self.button10= customtkinter.CTkButton(master=self.app, text= "Quit (Escape)", command=self.quitbutton,width= 25, height= 25,fg_color="red")
-        self.button10.grid(row=0, column= 6, padx = 20, pady = 10)
+        self.button10.grid(row=0, column= 5, padx = 20, pady = 10)
 
         self.button11= customtkinter.CTkButton(master=self.app, text= "Start Test (F1)", command=self.startTestButton,width= 25, height= 25,fg_color="green")
-        self.button11.grid(row=5, column= 3, padx = 20, pady = 5)
+        self.button11.grid(row=6, column= 2)
 
-        self.formatButton = customtkinter.CTkButton(master=self.app, text = "Reset Test", command = self.Load_button, fg_color="green")
+        self.formatButton = customtkinter.CTkButton(master=self.app, text = "Reset Test", command = self.reset, fg_color="green")
         self.formatButton.grid(row= 6, column = 5, padx = 20, pady = 5)
         
         self.user_entry = customtkinter.CTkEntry(master=self.app,placeholder_text= "Enter Serial Number")
-        self.user_entry.grid(row=4, column=3)
+        self.user_entry.grid(row=5, column=2)
         
         self.user_entry_custom = customtkinter.CTkEntry(master=self.app,placeholder_text= "Custom Models only")
-        self.user_entry_custom.grid(row=1, column=3)
+        self.user_entry_custom.grid(row=2, column=2)
         
         self.user_entry1 = customtkinter.CTkEntry(master=self.app,placeholder_text= "Enter Name Here")
-        self.user_entry1.grid(row=0, column=3)
+        self.user_entry1.grid(row=1, column=2)
 
         self.textbox = customtkinter.CTkTextbox(self.app,height= 100,border_color="black")
-        self.textbox.grid(row=6, column= 3)
+        self.textbox.grid(row=7, column= 2)
 
         self.passbox = customtkinter.CTkTextbox(self.app,height= 100,border_color="green")
-        self.passbox.grid(row=6, column= 4)
+        self.passbox.grid(row=7, column= 3)
 
         self.failbox = customtkinter.CTkTextbox(self.app,height= 100,border_color="red")
-        self.failbox.grid(row=6, column= 5)   
+        self.failbox.grid(row=7, column= 0)   
         
         self.optionmenu_model = customtkinter.StringVar(value="model")          
         self.optionmenu_series = customtkinter.StringVar(value="series")  # set initial value
 
         self.modelDropDown = customtkinter.CTkOptionMenu(master=self.app,values = self.models, command=self.modelDrop,variable= self.optionmenu_model,fg_color="blue")
-        self.modelDropDown.grid(row = 2, column = 3)
+        self.modelDropDown.grid(row = 3, column = 2)
 
         self.seriesDropDown = customtkinter.CTkOptionMenu(master=self.app,variable = self.optionmenu_series,command=self.subModelDrop,fg_color="blue")
-        self.seriesDropDown.grid(row = 3, column = 3)     
+        self.seriesDropDown.grid(row = 4, column = 2)     
 
         self.printPDF = customtkinter.CTkButton(master=self.app, text= "PDF Preview", command=self.createReport)
-        self.printPDF.grid(row=11, column= 6, padx = 20, pady = 10)
+        self.printPDF.grid( row=2, column= 5)
         
         self.help = customtkinter.CTkButton(master =self.app, text= "Help", command=self.openHelp)
-        self.help.grid(row = 11 , column = 5)
+        self.help.grid(row = 1 , column = 5)
         
         self.check_var = customtkinter.StringVar(value="on")
         self.textbox.configure(state="normal")
 
         self.impedenceButton = customtkinter.CTkButton(master=self.app, text= "Impedance", command=self.showImpedance,width= 25, height= 25,fg_color="blue")
-        self.impedenceButton.grid(row=2, column=4)
+        self.impedenceButton.grid(row=1, column=3)
         self.rmsButton = customtkinter.CTkButton(master=self.app, text= "RMS", command=self.showRMS,width= 25, height= 25,fg_color="blue")
-        self.rmsButton.grid(row=2, column=5)
+        self.rmsButton.grid(row=2, column=3)
         self.thdButton = customtkinter.CTkButton(master=self.app, text= "THD", command=self.showTHD,width= 25, height= 25,fg_color="blue")
-        self.thdButton.grid(row=3, column=4)
-        self.phaseButton = customtkinter.CTkButton(master=self.app, text= "Phase", command=self.showPhase,width= 25, height= 25,fg_color="blue")
-        self.phaseButton.grid(row=3, column=5)
+        self.thdButton.grid(row=3, column=3)
         self.PWDButton = customtkinter.CTkButton(master=self.app, text= "PhaseWrapDiff", command=self.showPWD,width= 25, height= 25,fg_color="blue")
-        self.PWDButton.grid(row=4, column=4)
+        self.PWDButton.grid(row=4, column=3)
         self.ListenButton = customtkinter.CTkButton(master=self.app, text= "Listening Test", command=self.ListenTest,width= 25, height= 25,fg_color="blue")
-        self.ListenButton.grid(row=4, column=5)
-        #i am writing bulllshit because i need to practice
+        self.ListenButton.grid(row=5, column=3)
         
         
         self.app.bind("<Key>", self.key_handler)
@@ -190,13 +187,13 @@ class App(customtkinter.CTk):
             self.impedenceButton.configure(state= "disabled")
             self.rmsButton.configure(state= "disabled")
             self.thdButton.configure(state= "disabled")
-            self.phaseButton.configure(state= "disabled")
             self.PWDButton.configure(state= "disabled")
             self.ListenButton.configure(state= "disabled")
             self.printPDF.configure(state= "disabled")
         self.app.mainloop()
+        
     def quitbutton(self):#this is the quit function that ends all process within the program
-        print("SHUTTING DOWN" )      
+    
         if(self.APx.Visible == True):
             self.APx.Visible = False
             sys.exit()
@@ -221,7 +218,7 @@ class App(customtkinter.CTk):
                 self.quitbutton()
             if (event.keycode == 112):
                 self.startTestButton()
-            #print(event.char, event.keysym, event.keycode)
+
     
     def Window48Button(self):#button for windows test 4 - 8 
         self.APx.Sequence.Sequences.Activate("Window Test (4-8)")
@@ -285,7 +282,6 @@ class App(customtkinter.CTk):
        # getText = self.textbox.get("0.0","1.end")
        # getfail = self.failbox.get("0.0","1.end")
        # getpass = self.passbox.get("0.0","1.end")
-       
        #if one of the buttons is selected and both of the drop downs are selected
         if(self.sequence == "Custom"):
             if(self.user_entry_custom != "" and self.user_entry.get() != ""):
@@ -300,19 +296,21 @@ class App(customtkinter.CTk):
                 self.impedenceButton.configure(state= "normal")
                 self.rmsButton.configure(state= "normal")
                 self.thdButton.configure(state= "normal")
-                self.phaseButton.configure(state= "normal")
                 self.PWDButton.configure(state= "normal")
                 self.ListenButton.configure(state= "normal")
                 self.printPDF.configure(state= "normal")
                 self.printTest()
                 self.APx.Sequence.Run() 
                 getText2 = self.textbox.get("0.0","1.end")
+                self.disableButton()
                 self.graphData(getText2)
+                
         elif(self.sequence != "" and self.optionmenu_model.get() != "model" and  self.optionmenu_series.get() != "series" ):
             if(self.sequence == "Limits (4-8)" or self.sequence == "Limits (70V)"):
-                print("limit")
+
                 self.APx.Sequence.Run() 
                 self.limitTestMaker()
+                
             elif((self.sequence == "Window Test (4-8)" or self.sequence == "Window Test (70V)") and self.user_entry.get() != ""):
                 self.textbox.delete("0.0","end")
                 self.failbox.delete("0.0","end") 
@@ -325,16 +323,15 @@ class App(customtkinter.CTk):
                 self.impedenceButton.configure(state= "normal")
                 self.rmsButton.configure(state= "normal")
                 self.thdButton.configure(state= "normal")
-                self.phaseButton.configure(state= "normal")
                 self.PWDButton.configure(state= "normal")
                 self.ListenButton.configure(state= "normal")
                 self.printPDF.configure(state= "normal")
                 self.printTest()
                 self.APx.Sequence.Run() 
                 getText2 = self.textbox.get("0.0","1.end")
+                self.disableButton()
                 self.graphData(getText2)
-            else:
-                print("test not selected")
+                
     def passButton(self):# this button will pass the failed test
         getText = self.textbox.get("0.0","1.end")   
         if(getText != ""):  
@@ -361,7 +358,26 @@ class App(customtkinter.CTk):
             self.graphData(getText2)
             
         return True 
-    
+    def disableButton(self):#this function will disble the beginning buttons to make sure the sure cannot change the sequence 
+        self.modelDropDown.configure(state="disabled")
+        self.seriesDropDown.configure(state="disabled")   
+        self.window48Button.configure(state="disabled")
+        self.limit48Button.configure(state="disabled")
+        self.customButton.configure(state="disabled")
+        self.window70Button.configure(state="disabled")
+        self.limt70Button.configure(state="disabled")
+        self.user_entry.configure(state="disabled")
+        self.user_entry_custom.configure(state="disabled")
+    def enableButton(self):#this will enable all the function and buttons before starting the test
+        self.modelDropDown.configure(state="normal")
+        self.seriesDropDown.configure(state="normal")   
+        self.window48Button.configure(state="normal")
+        self.limit48Button.configure(state="normal")
+        self.customButton.configure(state="normal")
+        self.window70Button.configure(state="normal")
+        self.limt70Button.configure(state="normal")
+        self.user_entry.configure(state="normal")
+        self.user_entry_custom.configure(state="normal")
     def openSoftware(self):# this button opens the software and format of the test.
         self.APx.Visible = True
         
@@ -376,17 +392,17 @@ class App(customtkinter.CTk):
         self.button11.configure(state="normal")
         self.Load_button()
     def testSubmitButton(self):#sumbits the report and makes a file in the filepath of this model 
-        print(self.finalFilePath + "\ " + self.sequence + "\ " +self.modelChoice + self.seriesChoice + "\ "  + self.user_entry.get())
-       
-        self.user_entry.delete("0","end")
-        self.textbox.delete("0.0","end")
-        self.failbox.delete("0.0","end")
-        self.passbox.delete("0.0","end")     
-        self.passedTest = []
-        self.failedTest = []
-    def ListenTest(self):#this will activate the audo for the listening test. I dont know how to route it to the correct audio output but ill find out in testing phase;
         
-        print("listening test")
+        if(self.textbox.get("0.0","1.end") == ""):
+            self.user_entry.delete("0","end")
+            self.textbox.delete("0.0","end")
+            self.failbox.delete("0.0","end")
+            self.passbox.delete("0.0","end")     
+            self.passedTest = []
+            self.failedTest = []
+            self.enableButton()
+    def ListenTest(self):#this will activate the audo for the listening test. I dont know how to route it to the correct audio output but ill find out in testing phase;
+
         self.APx.Sequence.Sequences.Activate("Listening Test (4-8)")
         self.APx.Sequence.Run()
         self.APx.Sequence.Sequences.Activate(self.sequence)    
@@ -569,9 +585,7 @@ class App(customtkinter.CTk):
         ax.set_xticklabels(ticks)
         
         filename = "C:/Users/jlsadmin/Desktop/testStats/outputs/Impedance.xlsx"
-        #filelimit = "192.168.60.10/qa/QC Window Data/Limits (4-8)/AL32/Impedance"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/Impedance.xlsx"
-        print("//192.168.60.10/qa/QC Window Data/Limits (4-8)" + "/" + self.modelChoice + self.seriesChoice +  "/" + "Impedance.xlsx")
         xAxis = pd.read_excel(filename,usecols='A',skiprows=4,)
         yAxis = pd.read_excel(filename,usecols='B',skiprows=4)
         x1Axis = pd.read_excel(filelimit,usecols='A',skiprows=4)
@@ -607,9 +621,6 @@ class App(customtkinter.CTk):
         
         interX = []
         interY = []
-        print (len(upperY))
-        print (len(lowerY))
-        print( len(dataY))
         if(self.sequence != "Custom"):
             for q in range(len(dataY) -1 ):
                 if ((dataY[q]) >= (upperY[q]) or (dataY[q]) <= (lowerY[q])):
@@ -706,9 +717,8 @@ class App(customtkinter.CTk):
         plt.autoscale(enable=True, axis= 'y')
         plt.savefig("C:/Users/jlsadmin/Desktop/testStats/pictures/rms.png")
         plt.show()           
-    def showPWD(self):#show the PHAse Wrap difference
+    def showPWD(self):#show the PHSAse Wrap difference
         self.removeWhiteSpace("PhaseWrapDiff")  
-        print("showPWD")
         fig, ax = plt.subplots(figsize=(10,7))
         ax.set_title("PhaseWrapDiff")
         ax.set_ylabel("DBSL1")
@@ -741,27 +751,20 @@ class App(customtkinter.CTk):
         y2 = []
         y3 = []
         
-        print(type(y),type(y1))
-        print(type(y[0]),type(y1[0]))
-        print( type(y[0][0]),type(y1[0][0]))
         
         ax.yaxis.set_ticks([180,160,140,120,100,80,60,40,20,0,-20,-40,-60,-80,-100,-120,-140,-160,-180])
         for x4 in range(len(y1)): 
-            y2.append(100)
+            y2.append(160)
         
         pan_handler = panhandler(fig)
         disconnect_zoom = zoom_factory(ax)
               
-        ax.plot(x1,y2,color= 'red')
         
         for x4 in range(len(y1)): 
             y3.append(-160)
         
-        ax.plot(x1,y3,color= 'red')
+        
 
-        print(type(y2),type(y3))
-        print(type(y2[0]),type(y3[0]))
-        #print( type(y2[0][0]),type(y3[0][0]))
         ax.plot(x,y) 
         ax.grid(color="grey")
         ax.grid(axis="x", which='minor',color="grey", linestyle="--")
@@ -770,7 +773,9 @@ class App(customtkinter.CTk):
         
         interX = []
         interY= []
-        if(self.sequence != "custom"):
+        if(self.sequence != "Custom"):
+            ax.plot(x1,y2,color= 'red')
+            ax.plot(x1,y3,color= 'red')
             for z in range(len(x)):
                 if (y[z][0] == y2[z] or (y[z-1][0] < y2[z] and y[z][0] > y2[z]) or (y[z-1][0] > y2[z] and y[z][0] < y2[z])):
                     interX.append(float(x[z][0]))
@@ -780,59 +785,6 @@ class App(customtkinter.CTk):
                     interY.append(float(y3[z]))
             plt.plot(interX, interY, 'ro')    
         plt.show()   
-    def showPhase(self):#shows phase measurement
-        self.removeWhiteSpace("Phase")  
-        fig, ax = plt.subplots(figsize=(10,7))
-        ax.set_title("Phase")
-        ax.set_ylabel("DBSL1")
-        ax.set_xlabel("Frequency")
-        ax.set_xlim(25,20002)
-        ax.set_ylim(0,25)
-   
-        x = [ 30,50,100 , 200 ,300, 500 , 1000 ,2000, 3000 , 5000, 10000, 20000]
-        ticks = [30,50, 100 , 200 ,300, 500 , "1k" ,"2k", "3k" , "5k", "10k", "20k"]
-
-        ax.set_xscale('log')
-        ax.set_xticks(x)
-        ax.set_xticklabels(ticks)
-        
-        filename = "C:/Users/jlsadmin/Desktop/testStats/outputs/Phase.xlsx"
-        filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/Phase.xlsx"
-
-        xAxis = pd.read_excel(filename,usecols='A',skiprows=4,)
-        yAxis = pd.read_excel(filename,usecols='B',skiprows=4)
-        x1Axis = pd.read_excel(filelimit,usecols='A',skiprows=4)
-        y1Axis = pd.read_excel(filelimit,usecols='B',skiprows=4)
-        x = pd.DataFrame(xAxis).to_numpy()
-        x1 = pd.DataFrame(x1Axis).to_numpy()
-        y = pd.DataFrame(yAxis).to_numpy()
-        y1 = pd.DataFrame(y1Axis).to_numpy()
-        x = x.tolist()
-        x1 = x1.tolist()
-        y = y.tolist()
-        y1 = y1.tolist()
-        ax.yaxis.set_ticks([1000, 0 , -5000, -10000, -15000, -20000, -25000, -30000, -35000,-40000,-45000,-50000,-55000,-60000,-65000])
-        disconnect_zoom = zoom_factory(ax)
-        pan_handler = panhandler(fig)
-        interX = []
-        interY =[]
-        if(self.sequence != "custom"):
-            for i in range(0, len(x)):
-                if (y1[i-1][0] < y[i-1][0] and y1[i][0] > y[i][0]) or (y1[i-1][0] > y[i-1][0] and y1[i][0] < y[i][0]):
-                    m = (y1[i][0] - y1[i-1][0]) / (x[i][0] - x[i-1][0])
-                    b = y1[i][0] - m * x[i][0]
-                    interX.append((y[i][0] - b) / m)
-                    interY.append(y[i][0])
-            plt.plot(interX,interY,'ro')
-            ax.plot(x1,y1,color= 'red')
-        ax.plot(x,y)
-        
-        ax.grid(color="grey")
-        ax.grid(axis="x", which='minor',color="grey", linestyle="--")
-        fig.canvas.mpl_connect('key_press_event',self.on_key)
-        plt.savefig("C:/Users/jlsadmin/Desktop/testStats/pictures/Phase.png")
-        plt.autoscale(enable=True, axis= 'y')
-        plt.show()
     def showTHD(self):#shows the THD rati0
         self.removeWhiteSpace("THD")        
         fig, ax = plt.subplots(figsize=(10,7))
@@ -878,7 +830,7 @@ class App(customtkinter.CTk):
         disconnect_zoom = zoom_factory(ax)
         
         ax.plot(x,y)
-        if(self.sequence != "custom"):
+        if(self.sequence != "Custom"):
             for x in range(len(y1)):
                 g = (y1[x][0] + 6)
                 y2.append(g)
@@ -902,9 +854,7 @@ class App(customtkinter.CTk):
             elif(test == "THD"):
                 self.showTHD()
             elif(test == "Listening Test"):
-                self.closePlot()
-            elif(test == "Phase"):
-                self.showPhase()                       
+                self.closePlot()                    
     def removeWhiteSpace(self, testName):
         #if Phase name is in pass box or fail box remove it.
         #if phase name is already in the begin
@@ -941,110 +891,29 @@ class App(customtkinter.CTk):
         elif event.key == 'q':
             # Close the window when 'q' key is pressed
             plt.close()   
-    ''' def graphData2(self, testName):
-        fig, ax = plt.subplots(figsize=(10,7))
-        ax.set_title(testName)
-        ax.set_ylabel("DBSL1")
-        ax.set_xlabel("Frequency")
-        ax.set_xlim(0,20002)
-        ax.set_ylim(0,25)
-
-        frequencyXaxis = [ 30,50,100 , 200 ,300, 500 , 1000 ,2000, 3000 , 5000, 10000, 20000]
-        ticks = [30,50, 100 , 200 ,300, 500 , "1k" ,"2k", "3k" , "5k", "10k", "20k"]
-        
-        ax.set_xscale('log')
-        ax.set_xticks(frequencyXaxis)
-        ax.set_xticklabels(ticks)
-        
-        filename = "C:/Users/jlsadmin/Desktop/testStats/outputs/" + testName +".xlsx"
-        filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/" + testName +".xlsx"
-
-        print(filename, "\n", filelimit )
-        #get the limits 
-        limitXAxis = pd.read_excel(filelimit,usecols='A',skiprows=4)
-        limitYAxis = pd.read_excel(filelimit,usecols='B',skiprows=4)
-        
-        outputDataX = pd.read_excel(filename,usecols='A',skiprows=4)
-        outputDataY = pd.read_excel(filename,usecols='B',skiprows=4)
-
-        #turn the list into list datatype 
-        limitXAxis = limitXAxis.values.tolist()
-        limitYAxis = limitYAxis.values.tolist()
-        outputDataX = outputDataX.values.tolist()
-        outputDataY = outputDataY.values.tolist()
-        
-        limitY2Axis = []
-        
-        ax.plot(limitXAxis,limitYAxis,color = 'red')
-        ax.plot(outputDataX,outputDataY, color = 'blue')
-        plt.show()
-         for x in range(len(limitYAxis)):
-            limitYAxis[x] = limitYAxis[x] - 3
-            g = (limitYAxis[x] + 6)
-            limitY2Axis.append(g)
-        
-        
-        
-       #ax.plot(frequencyXaxis, limitYAxis, color = "red")
-       # ax.plot(frequencyXaxis, limitY2Axis, color = "red")
-       # ax.grid(axis="x",color="grey", linestyle="--")
-        #ax.show()
-        xAxis = pd.read_excel(filename,usecols='A',skiprows=4,)
-        yAxis = pd.read_excel(filename,usecols='B',skiprows=4)
-        x1Axis = pd.read_excel(filelimit,usecols='A',skiprows=4)
-        y1Axis = pd.read_excel(filelimit,usecols='B',skiprows=4)
-        x = pd.DataFrame(xAxis).to_numpy()
-        x1 = pd.DataFrame(x1Axis).to_numpy()
-        y = pd.DataFrame(yAxis).to_numpy()
-        y1 = pd.DataFrame(y1Axis).to_numpy()
-        x = x.tolist()
-        x1 = x1.tolist()
-        y = y.tolist()
-        y1 = y1.tolist()
-        y2 = []
-        ax.yaxis.set_ticks([100,10,1,.1, .01,.001])
-        
-       
-        ax.plot(x,y)
-        
-        for x in range(len(y1)):
-            g = (y1[x][0] + 6)
-            y2.append(g)
-        
-        ax.plot(x1,y1,color= 'red')
-        ax.plot(x1,y2,color= 'red')
-        ax.grid(color="grey")
-        ax.grid(axis="x",color="grey", linestyle="--")
-        
-        #plt.savefig("C:/Users/jlsadmin/Desktop/testStats/pictures/THD.png")
-        pan_handler = panhandler(fig)
-        disconnect_zoom = zoom_factory(ax)
-        plt.show()'''
-    def limitTestMaker(self):
-        print("making limits")  
+    def limitTestMaker(self): 
         #get data from test.
         #replace data from test and save to limits
         filename = "C:/Users/jlsadmin/Desktop/testStats/limitsTestExport/Impedance.xlsx"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/Impedance.xlsx"
         dest = shutil.copyfile(filename, filelimit)
-        print(dest)
+
         filename = "C:/Users/jlsadmin/Desktop/testStats/limitsTestExport/Phase.xlsx"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/Phase.xlsx"
         dest = shutil.copyfile(filename, filelimit)
-        print(dest)
+
         filename = "C:/Users/jlsadmin/Desktop/testStats/limitsTestExport/THD.xlsx"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/THD.xlsx"
         dest = shutil.copyfile(filename, filelimit)
-        print(dest)
+  
         filename = "C:/Users/jlsadmin/Desktop/testStats/limitsTestExport/PhaseSmooth.xlsx"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/PhaseWrapDiff.xlsx"
         dest = shutil.copyfile(filename, filelimit)
-        print(dest)
+    
         filename = "C:/Users/jlsadmin/Desktop/testStats/limitsTestExport/RMS.xlsx"
         filelimit = "C:/Users/jlsadmin/Desktop/testStats/limits/RMStest.xlsx"
         dest = shutil.copyfile(filename, filelimit)
-        print(dest)
-        print("limits made")
+    
         #test to see if this works.  
     def closePlot(self):
         plt.close()
@@ -1052,7 +921,14 @@ class App(customtkinter.CTk):
     def openHelp(self):
         pdf_path = "C:/Users/jlsadmin/Downloads/APXtesterTutorial.pdf"
         subprocess.Popen([pdf_path], shell=True)
+    def reset(self):# this function resets all the test for the user. if they make a mistake
+        self.enableButton()
         
+        self.user_entry.delete("0","end")
+        self.user_entry_custom.delete("0","end")
+        self.textbox.delete("0.0","end")
+        self.failbox.delete("0.0","end")
+        self.passbox.delete("0.0","end")    
 if __name__ == "__main__":
     app = App()
     app.mainloop
